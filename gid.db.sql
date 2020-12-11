@@ -1,0 +1,33 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS `users` (
+	`Id`	INTEGER,
+	`Username`	TEXT,
+	`Password`	TEXT,
+	`Fullname`	TEXT,
+	PRIMARY KEY(`Id`)
+);
+CREATE TABLE IF NOT EXISTS `permissions` (
+	`Id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`AppId`	INTEGER,
+	`UserId`	INTEGER,
+	`Token`	TEXT
+);
+CREATE TABLE IF NOT EXISTS `enterance` (
+	`Id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`UserId`	INTEGER,
+	`Token`	TEXT,
+	`IsValid`	INTEGER DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS `certificates` (
+	`Id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`ApplicationId`	INTEGER,
+	`Token`	TEXT
+);
+CREATE TABLE IF NOT EXISTS `applications` (
+	`Id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`CallbackUrl`	TEXT,
+	`Name`	TEXT,
+	`AdminId`	INTEGER,
+	`PrivateKey`	TEXT
+);
+COMMIT;
